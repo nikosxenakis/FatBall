@@ -25,6 +25,9 @@ class Obstacle{
     init(gameScene: GameScene, position: UInt32, width: CGFloat, height: CGFloat){
         
         self.obstacle = SKSpriteNode(imageNamed: "obstacle")
+        //self.obstacle = SKSpriteNode(imageNamed: "obstacleWood")
+
+        
         self.gameScene = gameScene
         self.position = position
         self.width = width

@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fat Ball/Obstacle.swift"
-            timestampString = "498232548.38346"
+            timestampString = "514812437.741988"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "init(gameScene:position:width:height:)"
             landmarkType = "7">
          </BreakpointContent>

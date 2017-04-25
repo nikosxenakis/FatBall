@@ -27,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE023E401EAF60340018EFBE /* Fat Ball.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fat Ball.entitlements"; sourceTree = "<group>"; };
 		EE0CA0E11DAD6599004DCE2D /* Fat Ball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fat Ball.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE0CA0E41DAD6599004DCE2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE0CA0EA1DAD6599004DCE2D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -59,11 +60,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE023E411EAF60350018EFBE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EE0CA0D81DAD6599004DCE2D = {
 			isa = PBXGroup;
 			children = (
 				EE0CA0E31DAD6599004DCE2D /* Fat Ball */,
 				EE0CA0E21DAD6599004DCE2D /* Products */,
+				EE023E411EAF60350018EFBE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,6 +87,7 @@
 		EE0CA0E31DAD6599004DCE2D /* Fat Ball */ = {
 			isa = PBXGroup;
 			children = (
+				EE023E401EAF60340018EFBE /* Fat Ball.entitlements */,
 				EEF96A4E1EAF480D00E2E9FB /* Parser.swift */,
 				EE20043A1DB2686F00F761A7 /* AI.swift */,
 				EE74C3AB1DAFDA8600A0ED92 /* Functions.swift */,
@@ -134,6 +144,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = N57B34HS9M;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InterAppAudio = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
