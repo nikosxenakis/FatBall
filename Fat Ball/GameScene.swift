@@ -27,14 +27,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     override func didMove(to view: SKView) {
         
-        view.showsPhysics = true
+        //view.showsPhysics = true
         
         //physics
         physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0 )
         physicsWorld.contactDelegate = self
         
         //terrain
-        terrain = Terrain(gameScene: self, width: size.width, height: size.height, hidden: false)
+        terrain = Terrain(gameScene: self, width: size.width, height: size.height, hidden: true)
        
         //score
         score = Score(gameScene: self)

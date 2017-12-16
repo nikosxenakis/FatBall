@@ -25,9 +25,9 @@ class ObstaclesHolder{
         instance.gameScene = gameScene
     }
     
-    static func addObstacle(pos: UInt32, width: CGFloat, height: CGFloat){
+    static func addObstacle(pos: UInt32, width: CGFloat, height: CGFloat, obstacleName: String){
         
-        let obstacle: Obstacle = Obstacle(gameScene: instance.gameScene!, position: pos, width: width, height: height)
+        let obstacle: Obstacle = Obstacle(gameScene: instance.gameScene!, position: pos, width: width, height: height, obstacleName: obstacleName)
         
         instance.obstaclesList.append(obstacle)
         

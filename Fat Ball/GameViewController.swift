@@ -25,7 +25,6 @@ class GameViewController: UIViewController {
         Parser.initialization(fileName: "configurationFile",ext: "json");
         Parser.printData();
         Parser.setProperties();
-
         
         scene.scaleMode = .resizeFill
         skView.presentScene(scene)

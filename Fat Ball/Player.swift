@@ -24,7 +24,10 @@ class Player{
     var direction = Direction.None
 
     init(gameScene: GameScene, width: CGFloat, height: CGFloat){
-        self.player = SKSpriteNode(imageNamed: "ball")
+        //self.player = SKSpriteNode(imageNamed: "ball")
+        self.player = SKSpriteNode(imageNamed: "colorfulBall")
+        
+        
         self.player.name = "Ball"
         
         self.gameScene = gameScene
@@ -107,8 +110,8 @@ class Player{
         let angle = acos(h!/(2*w!))*180/3.14
         let range: CGFloat = 40.0
         
-        print(w, h, angle)
-        
+        print(angle)
+
         rainParticle.emissionAngle = angle + 180 + range/2
         rainParticle.emissionAngleRange = range
         //rainParticle.particleBirthRate = 80

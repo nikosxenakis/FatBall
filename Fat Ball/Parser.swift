@@ -36,7 +36,7 @@ final class Parser{
     }
   
     public static func printData(){
-        print(Parser.shared.json)
+        print(Parser.shared.json!)
     }
 
     public static func setProperties(){

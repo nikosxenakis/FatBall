@@ -25,7 +25,9 @@ class Score{
         self.scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
         self.scoreLabel.text = "Score: 0"
 
-        self.scoreLabel.position = CGPoint(x: 100, y: 0)
+        self.scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
+        
+        self.scoreLabel.position = CGPoint(x: 10, y: 0)
         
 
         self.scoreLabel.zPosition = 100

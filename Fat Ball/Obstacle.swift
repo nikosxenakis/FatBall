@@ -22,10 +22,9 @@ class Obstacle{
     var width: CGFloat
     var height: CGFloat
     
-    init(gameScene: GameScene, position: UInt32, width: CGFloat, height: CGFloat){
+    init(gameScene: GameScene, position: UInt32, width: CGFloat, height: CGFloat, obstacleName: String){
         
-        self.obstacle = SKSpriteNode(imageNamed: "obstacle")
-        //self.obstacle = SKSpriteNode(imageNamed: "obstacleWood")
+        self.obstacle = SKSpriteNode(imageNamed: obstacleName)
 
         
         self.gameScene = gameScene

@@ -35,6 +35,7 @@ class AI{
             //position
             var num: CGFloat = 0.0
             var pos: UInt32 = 0
+            var obstacleName: String = "brownObstacle"
             
             if(instance.lastPos == ObstaclePosition.Right){
                 num = random(min: 0 , max: 1.2)
@@ -50,9 +51,22 @@ class AI{
                 pos = ObstaclePosition.Right
             }
             
+            //color
+            let num2 = random(min: 0 , max: 3)
+            
+            if(num2 < 1 ){
+                obstacleName = "brownObstacle"
+            }
+            else if(num2 < 2 ){
+                obstacleName = "purpleObstacle"
+            }
+            else{
+                obstacleName = "yellowObstacle"
+            }
+            
             instance.lastPos = pos
             
-            ObstaclesHolder.addObstacle(pos: pos,width: width,height: height)
+            ObstaclesHolder.addObstacle(pos: pos,width: width,height: height, obstacleName: obstacleName)
         }
         
         //print(currentTime.description+" "+instance.lastTime.description)
