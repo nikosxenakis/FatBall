@@ -11,7 +11,7 @@ import SpriteKit
 import GameplayKit
 
 
-func random() -> CGFloat {
+private func random() -> CGFloat {
     return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
 }
 

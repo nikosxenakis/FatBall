@@ -13,6 +13,10 @@
 		EE0CA0F01DAD6599004DCE2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE0CA0EE1DAD6599004DCE2D /* Main.storyboard */; };
 		EE0CA0F21DAD6599004DCE2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE0CA0F11DAD6599004DCE2D /* Assets.xcassets */; };
 		EE0CA0F51DAD6599004DCE2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE0CA0F31DAD6599004DCE2D /* LaunchScreen.storyboard */; };
+		EE1B74B61FF53AD900EC1AC5 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B74B51FF53AD900EC1AC5 /* GameState.swift */; };
+		EE1B74B81FF54BBF00EC1AC5 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B74B71FF54BBF00EC1AC5 /* Label.swift */; };
+		EE1B74BA1FF54FF600EC1AC5 /* SpritesHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B74B91FF54FF600EC1AC5 /* SpritesHolder.swift */; };
+		EE1B74BC1FF5514A00EC1AC5 /* SpriteObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B74BB1FF5514A00EC1AC5 /* SpriteObject.swift */; };
 		EE2004341DB24A5900F761A7 /* Spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = EE2004321DB24A5900F761A7 /* Spark.sks */; };
 		EE2004351DB24A5900F761A7 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = EE2004331DB24A5900F761A7 /* spark.png */; };
 		EE2004371DB2545500F761A7 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2004361DB2545500F761A7 /* Obstacle.swift */; };
@@ -36,6 +40,10 @@
 		EE0CA0F11DAD6599004DCE2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE0CA0F41DAD6599004DCE2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE0CA0F61DAD6599004DCE2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE1B74B51FF53AD900EC1AC5 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		EE1B74B71FF54BBF00EC1AC5 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		EE1B74B91FF54FF600EC1AC5 /* SpritesHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpritesHolder.swift; sourceTree = "<group>"; };
+		EE1B74BB1FF5514A00EC1AC5 /* SpriteObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteObject.swift; sourceTree = "<group>"; };
 		EE2004321DB24A5900F761A7 /* Spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Spark.sks; sourceTree = "<group>"; };
 		EE2004331DB24A5900F761A7 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		EE2004361DB2545500F761A7 /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
@@ -87,27 +95,63 @@
 		EE0CA0E31DAD6599004DCE2D /* Fat Ball */ = {
 			isa = PBXGroup;
 			children = (
+				EE0CA0F61DAD6599004DCE2D /* Info.plist */,
+				EE27FA711FE5D099002C18B4 /* VIew */,
+				EE27FA701FE5D084002C18B4 /* Controller */,
+				EE27FA6F1FE5CE8A002C18B4 /* Model */,
+				EE27FA6E1FE5CE50002C18B4 /* SupportFiles */,
+				EE2004321DB24A5900F761A7 /* Spark.sks */,
+				EE2004331DB24A5900F761A7 /* spark.png */,
+			);
+			path = "Fat Ball";
+			sourceTree = "<group>";
+		};
+		EE27FA6E1FE5CE50002C18B4 /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
 				EE023E401EAF60340018EFBE /* Fat Ball.entitlements */,
+				EE958CE31EABB1BD005E91B5 /* configurationFile.json */,
+				EE0CA0E41DAD6599004DCE2D /* AppDelegate.swift */,
+				EE0CA0F11DAD6599004DCE2D /* Assets.xcassets */,
+				EE0CA0F31DAD6599004DCE2D /* LaunchScreen.storyboard */,
+				EE0CA0EE1DAD6599004DCE2D /* Main.storyboard */,
+			);
+			path = SupportFiles;
+			sourceTree = "<group>";
+		};
+		EE27FA6F1FE5CE8A002C18B4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				EEF96A4E1EAF480D00E2E9FB /* Parser.swift */,
 				EE20043A1DB2686F00F761A7 /* AI.swift */,
 				EE74C3AB1DAFDA8600A0ED92 /* Functions.swift */,
 				EE9B8E431DAFC12200A4CF74 /* Terrain.swift */,
 				EE958CE11EABA51A005E91B5 /* Score.swift */,
+				EE1B74B71FF54BBF00EC1AC5 /* Label.swift */,
 				EE74C3A91DAFD82900A0ED92 /* Player.swift */,
 				EE2004361DB2545500F761A7 /* Obstacle.swift */,
 				EE2004381DB2575B00F761A7 /* ObstaclesHolder.swift */,
-				EE0CA0E41DAD6599004DCE2D /* AppDelegate.swift */,
-				EE0CA0EA1DAD6599004DCE2D /* GameScene.swift */,
-				EE0CA0EC1DAD6599004DCE2D /* GameViewController.swift */,
-				EE958CE31EABB1BD005E91B5 /* configurationFile.json */,
-				EE0CA0EE1DAD6599004DCE2D /* Main.storyboard */,
-				EE0CA0F11DAD6599004DCE2D /* Assets.xcassets */,
-				EE0CA0F31DAD6599004DCE2D /* LaunchScreen.storyboard */,
-				EE0CA0F61DAD6599004DCE2D /* Info.plist */,
-				EE2004321DB24A5900F761A7 /* Spark.sks */,
-				EE2004331DB24A5900F761A7 /* spark.png */,
+				EE1B74B51FF53AD900EC1AC5 /* GameState.swift */,
+				EE1B74B91FF54FF600EC1AC5 /* SpritesHolder.swift */,
+				EE1B74BB1FF5514A00EC1AC5 /* SpriteObject.swift */,
 			);
-			path = "Fat Ball";
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EE27FA701FE5D084002C18B4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EE0CA0EC1DAD6599004DCE2D /* GameViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EE27FA711FE5D099002C18B4 /* VIew */ = {
+			isa = PBXGroup;
+			children = (
+				EE0CA0EA1DAD6599004DCE2D /* GameScene.swift */,
+			);
+			path = VIew;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,12 +181,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Nikos Xenakis";
 				TargetAttributes = {
 					EE0CA0E01DAD6599004DCE2D = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = N57B34HS9M;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.InterAppAudio = {
@@ -196,11 +241,15 @@
 				EE0CA0EB1DAD6599004DCE2D /* GameScene.swift in Sources */,
 				EE20043B1DB2686F00F761A7 /* AI.swift in Sources */,
 				EE9B8E441DAFC12200A4CF74 /* Terrain.swift in Sources */,
+				EE1B74B81FF54BBF00EC1AC5 /* Label.swift in Sources */,
 				EE958CE21EABA51A005E91B5 /* Score.swift in Sources */,
 				EE0CA0ED1DAD6599004DCE2D /* GameViewController.swift in Sources */,
 				EE74C3AA1DAFD82900A0ED92 /* Player.swift in Sources */,
+				EE1B74BC1FF5514A00EC1AC5 /* SpriteObject.swift in Sources */,
 				EE0CA0E51DAD6599004DCE2D /* AppDelegate.swift in Sources */,
+				EE1B74B61FF53AD900EC1AC5 /* GameState.swift in Sources */,
 				EE2004391DB2575B00F761A7 /* ObstaclesHolder.swift in Sources */,
+				EE1B74BA1FF54FF600EC1AC5 /* SpritesHolder.swift in Sources */,
 				EE74C3AC1DAFDA8600A0ED92 /* Functions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,7 +285,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -244,7 +295,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -286,7 +341,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -294,7 +351,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -329,7 +390,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Nikos-Xenakis.Fat-Ball";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -342,7 +404,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Nikos-Xenakis.Fat-Ball";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

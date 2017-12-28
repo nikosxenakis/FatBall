@@ -22,9 +22,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var terrain: Terrain?
     var score: Score?
+    var startLabel: Label?
+    var endLabel: Label?
     var player: Player?
     var obstacleList: [SKSpriteNode] = []
-
+    
     override func didMove(to view: SKView) {
         
         //view.showsPhysics = true
@@ -33,11 +35,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0 )
         physicsWorld.contactDelegate = self
         
+        SpritesHolder.initialize(gameScene: self)
         //terrain
-        terrain = Terrain(gameScene: self, width: size.width, height: size.height, hidden: true)
+        terrain = Terrain(gameScene: self, width: size.width, height: size.height)
        
         //score
-        score = Score(gameScene: self)
+        score = Score()
+        
+        startLabel = Label(text: "Tap to begin")
+        endLabel = Label(text: "You lose")
+        endLabel?.hide()
         
         //player
         player = Player(gameScene: self, width: size.width, height: size.height)
@@ -76,7 +83,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
-        
+
         //print("didEnd");
         
         var firstBody: SKPhysicsBody
@@ -100,9 +107,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
+        if(gameState == GameState.Start){
+            return
+        }
+        if(gameState == GameState.End){
+            return
+        }
+        
         AI.run(currentTime)
         
         ObstaclesHolder.update()
+
+        ObstaclesHolder.destroy()
 
         player?.update()
 

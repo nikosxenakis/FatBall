@@ -24,7 +24,6 @@ class AI{
     
     static func run(_ currentTime: TimeInterval){
         
-        
         if(currentTime - instance.lastTime > spawnTime){
             instance.lastTime = currentTime
             

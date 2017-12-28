@@ -39,4 +39,19 @@ class ObstaclesHolder{
         }
     }
     
+    static func stop(){
+        for obstacle in instance.obstaclesList {
+            obstacle.stop()
+        }
+    }
+    
+    static func destroy(){
+        for obstacle in instance.obstaclesList {
+            if(obstacle.obstacle.position.y < -obstacle.obstacle.size.height/2){
+                let index = instance.obstaclesList.index{$0 === obstacle}
+                instance.obstaclesList.remove(at: index!)
+                obstacle.destroy()
+            }
+        }
+    }
 }

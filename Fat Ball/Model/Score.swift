@@ -12,7 +12,6 @@ import SpriteKit
 class Score{
     
     var scoreLabel: SKLabelNode!
-    var gameScene: GameScene
     
     var score: Int = 0 {
         didSet {
@@ -20,18 +19,16 @@ class Score{
         }
     }
     
-    init(gameScene: GameScene){
-        self.gameScene = gameScene
+    init(){
         self.scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
         self.scoreLabel.text = "Score: 0"
 
         self.scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         
-        self.scoreLabel.position = CGPoint(x: 10, y: 0)
+        self.scoreLabel.position = CGPoint(x: 10, y: 10)
         
-
         self.scoreLabel.zPosition = 100
-        gameScene.addChild(self.scoreLabel)
+        SpritesHolder.getGameScene().addChild(self.scoreLabel)
         
     }
 

@@ -16,13 +16,16 @@ class Terrain{
     var width: CGFloat
     var height: CGFloat
     
-    init(gameScene: GameScene, width: CGFloat, height: CGFloat, hidden: Bool){
-        self.background = SKSpriteNode(imageNamed: "background")
+    init(gameScene: GameScene, width: CGFloat, height: CGFloat){
+        //self.background = SKSpriteNode(imageNamed: "background")
+        self.background = SKSpriteNode()
+
+        self.background.color = UIColor(red: 0.0, green: 0.1, blue: 0.1, alpha: 1.0)
         self.gameScene = gameScene
         self.width = width
         self.height = height
         
-        background.isHidden = hidden
+        background.isHidden = false
         
         //size
         background.size.width = width

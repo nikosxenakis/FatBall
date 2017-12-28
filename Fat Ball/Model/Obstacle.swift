@@ -16,6 +16,8 @@ struct ObstaclePosition {
 
 class Obstacle{
     
+    var id: UInt16
+    static var obstaclesNumber: UInt16 = 0;
     var obstacle: SKSpriteNode
     var gameScene: GameScene
     var position = ObstaclePosition.Left
@@ -24,9 +26,10 @@ class Obstacle{
     
     init(gameScene: GameScene, position: UInt32, width: CGFloat, height: CGFloat, obstacleName: String){
         
-        self.obstacle = SKSpriteNode(imageNamed: obstacleName)
-
+        self.id = Obstacle.obstaclesNumber + 1;
+        Obstacle.obstaclesNumber = Obstacle.obstaclesNumber + 1;
         
+        self.obstacle = SKSpriteNode(imageNamed: obstacleName)
         self.gameScene = gameScene
         self.position = position
         self.width = width
@@ -67,4 +70,12 @@ class Obstacle{
         self.obstacle.physicsBody?.velocity = CGVector(dx: 0.0, dy: -100.0 )
     }
     
+    func stop(){
+        self.obstacle.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0 )
+    }
+    
+    func destroy(){
+        print("Obstacle with id: \(self.id) destroyed")
+        self.obstacle.removeFromParent()
+    }
 }

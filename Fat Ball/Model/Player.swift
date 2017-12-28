@@ -58,11 +58,25 @@ class Player{
     }
     
     func update(){
-        player.position = CGPoint(x: player.position.x, y: height * 0.25)
-        player.physicsBody?.velocity = CGVector(dx: player.physicsBody!.velocity.dx, dy: 0.0 )
+        self.player.position = CGPoint(x: self.player.position.x, y: height * 0.25)
+        self.player.physicsBody?.velocity = CGVector(dx: self.player.physicsBody!.velocity.dx, dy: 0.0 )
+    }
+    
+    func stop(){
+        self.player.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0 )
     }
     
     func touchEvent(){
+        if(gameState == GameState.Start){
+            let startLabel = SpritesHolder.getSprite(id: "Tap to begin") as! Label
+            startLabel.hide()
+            
+            gameState = GameState.Playing
+        }
+        if(gameState == GameState.End){
+            return
+        }
+        
         //na efarmosw taxitita
         if(direction == Direction.None || direction == Direction.Left){
             direction = Direction.Right
@@ -81,6 +95,10 @@ class Player{
         let scale = self.player.xScale
         
         if(scale < 0.2){
+            ObstaclesHolder.stop()
+            self.stop()
+            (SpritesHolder.getSprite(id: "You lose") as! Label).show()
+            gameState = GameState.End
             print("End Game")
             return
         }
