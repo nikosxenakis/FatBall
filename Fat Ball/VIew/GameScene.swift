@@ -9,15 +9,6 @@
 import SpriteKit
 import GameplayKit
 
-struct PhysicsCategory {
-    static let None      : UInt32 = 0
-    static let Ball   : UInt32 = 1
-    static let Wall: UInt32 = 2
-    static let Background: UInt32 = 3
-    static let PowerUp   : UInt32 = 4
-    static let All       : UInt32 = UInt32.max
-}
-
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var terrain: Terrain?
@@ -37,20 +28,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         SpritesHolder.initialize(gameScene: self)
         //terrain
-        terrain = Terrain(gameScene: self, width: size.width, height: size.height)
+        terrain = Terrain(text: "terrain", width: size.width, height: size.height)
        
         //score
-        score = Score()
+        //score = Score()
         
         startLabel = Label(text: "Tap to begin")
         endLabel = Label(text: "You lose")
         endLabel?.hide()
         
         //player
-        player = Player(gameScene: self, width: size.width, height: size.height)
+        player = Player(text: "colorfulBall", width: size.width, height: size.height)
         
         ObstaclesHolder.initialize(gameScene: self)
         
+        SpritesHolder.printSprites()
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -71,8 +63,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondBody = contact.bodyA
         }
 
-        if( (firstBody.categoryBitMask == PhysicsCategory.Ball ) &&
-            (secondBody.categoryBitMask == PhysicsCategory.Wall )
+        if( (firstBody.categoryBitMask == PhysicsCategories.Ball ) &&
+            (secondBody.categoryBitMask == PhysicsCategories.Wall ) || (firstBody.categoryBitMask == PhysicsCategories.Wall ) &&
+            (secondBody.categoryBitMask == PhysicsCategories.Ball )
             ){
             //print("Ball & Wall");
             
@@ -96,8 +89,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondBody = contact.bodyA
         }
         
-        if( (firstBody.categoryBitMask == PhysicsCategory.Ball ) &&
-            (secondBody.categoryBitMask == PhysicsCategory.Wall )
+        if( (firstBody.categoryBitMask == PhysicsCategories.Ball ) &&
+            (secondBody.categoryBitMask == PhysicsCategories.Wall )
             ){
             //print("Ball & Wall");
         }
@@ -107,10 +100,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
-        if(gameState == GameState.Start){
+        if(gameState == GameStates.Start){
             return
         }
-        if(gameState == GameState.End){
+        if(gameState == GameStates.End){
             return
         }
         
@@ -120,11 +113,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         ObstaclesHolder.destroy()
 
-        player?.update()
-
-        terrain?.update()
-
-        score?.update()
+        SpritesHolder.update()
 
     }
 

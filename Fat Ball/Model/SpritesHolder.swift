@@ -17,7 +17,6 @@ class SpritesHolder{
     
     init(){
         self.spritesList = []
-        self.gameScene = nil
     }
     
     static func getGameScene() -> GameScene{
@@ -28,15 +27,37 @@ class SpritesHolder{
         instance.gameScene = gameScene
     }
     
-    static func addSprite(sprite: SpriteObject){
-        
-        instance.spritesList.append(sprite)
-        
+    static func addSprite(spriteObject: SpriteObject){
+        instance.gameScene!.addChild(spriteObject.sprite)
+        instance.spritesList.append(spriteObject)
     }
     
     static func getSprite(id: String) -> SpriteObject{
-  
         return instance.spritesList.filter{$0.id == id}[0]
-
+    }
+    
+    static func printSprites(){
+        print("Sprites id:")
+        for sprite in instance.spritesList {
+            sprite.printSprite()
+        }
+    }
+    
+    static func stop(){
+        for sprite in instance.spritesList {
+            sprite.stop()
+        }
+    }
+    
+    static func update(){
+        for sprite in instance.spritesList {
+            sprite.update()
+        }
+        /*
+        player?.update()
+        
+        terrain?.update()
+        
+        score?.update()*/
     }
 }

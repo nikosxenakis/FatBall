@@ -25,9 +25,9 @@ class ObstaclesHolder{
         instance.gameScene = gameScene
     }
     
-    static func addObstacle(pos: UInt32, width: CGFloat, height: CGFloat, obstacleName: String){
+    static func addObstacle(pos: ObstaclePosition, width: CGFloat, height: CGFloat, obstacleName: String){
         
-        let obstacle: Obstacle = Obstacle(gameScene: instance.gameScene!, position: pos, width: width, height: height, obstacleName: obstacleName)
+        let obstacle: Obstacle = Obstacle(position: pos, width: width, height: height, obstacleName: obstacleName)
         
         instance.obstaclesList.append(obstacle)
         
@@ -47,7 +47,7 @@ class ObstaclesHolder{
     
     static func destroy(){
         for obstacle in instance.obstaclesList {
-            if(obstacle.obstacle.position.y < -obstacle.obstacle.size.height/2){
+            if(obstacle.sprite.position.y < -(obstacle.sprite as! SKSpriteNode).size.height/2){
                 let index = instance.obstaclesList.index{$0 === obstacle}
                 instance.obstaclesList.remove(at: index!)
                 obstacle.destroy()

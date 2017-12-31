@@ -17,6 +17,7 @@
 		EE1B74B81FF54BBF00EC1AC5 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B74B71FF54BBF00EC1AC5 /* Label.swift */; };
 		EE1B74BA1FF54FF600EC1AC5 /* SpritesHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B74B91FF54FF600EC1AC5 /* SpritesHolder.swift */; };
 		EE1B74BC1FF5514A00EC1AC5 /* SpriteObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B74BB1FF5514A00EC1AC5 /* SpriteObject.swift */; };
+		EE1B74BE1FF68F8400EC1AC5 /* PhysicsCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B74BD1FF68F8400EC1AC5 /* PhysicsCategories.swift */; };
 		EE2004341DB24A5900F761A7 /* Spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = EE2004321DB24A5900F761A7 /* Spark.sks */; };
 		EE2004351DB24A5900F761A7 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = EE2004331DB24A5900F761A7 /* spark.png */; };
 		EE2004371DB2545500F761A7 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2004361DB2545500F761A7 /* Obstacle.swift */; };
@@ -44,6 +45,7 @@
 		EE1B74B71FF54BBF00EC1AC5 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		EE1B74B91FF54FF600EC1AC5 /* SpritesHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpritesHolder.swift; sourceTree = "<group>"; };
 		EE1B74BB1FF5514A00EC1AC5 /* SpriteObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteObject.swift; sourceTree = "<group>"; };
+		EE1B74BD1FF68F8400EC1AC5 /* PhysicsCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategories.swift; sourceTree = "<group>"; };
 		EE2004321DB24A5900F761A7 /* Spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Spark.sks; sourceTree = "<group>"; };
 		EE2004331DB24A5900F761A7 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		EE2004361DB2545500F761A7 /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				EE1B74B51FF53AD900EC1AC5 /* GameState.swift */,
 				EE1B74B91FF54FF600EC1AC5 /* SpritesHolder.swift */,
 				EE1B74BB1FF5514A00EC1AC5 /* SpriteObject.swift */,
+				EE1B74BD1FF68F8400EC1AC5 /* PhysicsCategories.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				EE74C3AA1DAFD82900A0ED92 /* Player.swift in Sources */,
 				EE1B74BC1FF5514A00EC1AC5 /* SpriteObject.swift in Sources */,
 				EE0CA0E51DAD6599004DCE2D /* AppDelegate.swift in Sources */,
+				EE1B74BE1FF68F8400EC1AC5 /* PhysicsCategories.swift in Sources */,
 				EE1B74B61FF53AD900EC1AC5 /* GameState.swift in Sources */,
 				EE2004391DB2575B00F761A7 /* ObstaclesHolder.swift in Sources */,
 				EE1B74BA1FF54FF600EC1AC5 /* SpritesHolder.swift in Sources */,

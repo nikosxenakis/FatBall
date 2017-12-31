@@ -11,33 +11,16 @@ import SpriteKit
 
 class Label: SpriteObject{
     
-    var label: SKLabelNode!
-    
     init(text: String){
-        super.init(id: text)
-
-        self.label = SKLabelNode(fontNamed: "Chalkduster")
         
-        self.label.text = text
+        super.init(id: text, sprite: SKLabelNode(fontNamed: "Chalkduster"))
         
-        //self.label.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.center
-        //self.label.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
-
-        self.label.position = CGPoint(x: SpritesHolder.getGameScene().size.width * 0.5, y: SpritesHolder.getGameScene().size.height * 0.5)
-
-        self.label.isHidden = false
-
-        self.label.zPosition = 100
+        (self.sprite as! SKLabelNode).text = text
         
-        SpritesHolder.getGameScene().addChild(self.label)
-        SpritesHolder.addSprite(sprite: self)
+        self.sprite.position = CGPoint(x: SpritesHolder.getGameScene().size.width * 0.5, y: SpritesHolder.getGameScene().size.height * 0.5)
+
+        self.setZPosition(physicsCategory: PhysicsCategories.Label)
+
     }
     
-    func show(){
-        self.label.isHidden = false
-    }
-    
-    func hide(){
-        self.label.isHidden = true
-    }
 }

@@ -9,63 +9,53 @@
 import Foundation
 import SpriteKit
 
-class Terrain{
+class Terrain: SpriteObject{
     
-    var background: SKSpriteNode
-    var gameScene: GameScene
     var width: CGFloat
     var height: CGFloat
     
-    init(gameScene: GameScene, width: CGFloat, height: CGFloat){
-        //self.background = SKSpriteNode(imageNamed: "background")
-        self.background = SKSpriteNode()
-
-        self.background.color = UIColor(red: 0.0, green: 0.1, blue: 0.1, alpha: 1.0)
-        self.gameScene = gameScene
+    init(text: String, width: CGFloat, height: CGFloat){
+        
         self.width = width
         self.height = height
         
-        background.isHidden = false
+        //SKSpriteNode(imageNamed: "background")
+        super.init(id: text, sprite: SKSpriteNode())
         
+        (self.sprite as! SKSpriteNode).color = UIColor(red: 0.0, green: 0.1, blue: 0.1, alpha: 1.0)
+
         //size
-        background.size.width = width
-        background.size.height = 10*height
-        
+        (self.sprite as! SKSpriteNode).size.width = width
+        (self.sprite as! SKSpriteNode).size.height = 10*height
+
         //position
-        background.position = CGPoint(x: width/2, y: 0)//height*0.75)
-        background.zPosition = -1
-        
+        self.sprite.position = CGPoint(x: width/2, y: 0)
+        self.setZPosition(physicsCategory: PhysicsCategories.Wall)
+
         //physics
-        background.physicsBody?.isDynamic = false
-        
-        background.physicsBody = SKPhysicsBody()
-        
-        background.physicsBody?.categoryBitMask = PhysicsCategory.Wall
-        background.physicsBody?.contactTestBitMask = PhysicsCategory.Ball
-        background.physicsBody?.collisionBitMask = PhysicsCategory.None
-        
-        background.physicsBody?.velocity = CGVector(dx: 0.0, dy: -100.0 )
-        
-        //add to scene
-        gameScene.addChild(background)
+        self.sprite.physicsBody = SKPhysicsBody()
+        self.sprite.physicsBody?.isDynamic = false
+        self.sprite.physicsBody?.velocity = CGVector(dx: 0.0, dy: -100.0 )
         
         //borders
-        let borderBody = SKPhysicsBody(edgeLoopFrom: gameScene.frame)
-        borderBody.categoryBitMask = PhysicsCategory.Wall
-        borderBody.contactTestBitMask = PhysicsCategory.Ball
-        borderBody.collisionBitMask = PhysicsCategory.Ball
+        let borderBody = SKPhysicsBody(edgeLoopFrom: SpritesHolder.getGameScene().frame)
+        
+        borderBody.categoryBitMask = PhysicsCategories.Wall
+        borderBody.contactTestBitMask = PhysicsCategories.Ball
+        borderBody.collisionBitMask = PhysicsCategories.None
         
         borderBody.friction = 0
-        gameScene.physicsBody = borderBody
+        SpritesHolder.getGameScene().physicsBody = borderBody
     }
     
-    func update(){
+    override func update(){
         
-         background.physicsBody?.velocity = CGVector(dx: 0.0, dy: -100.0 )
+        self.sprite.physicsBody?.velocity = CGVector(dx: 0.0, dy: -100.0 )
 
-        if(background.position.y <= -background.size.height/2+self.height){
-                background.position.y = 0
+        if(self.sprite.position.y <= -(self.sprite as! SKSpriteNode).size.height/2+self.height){
+                self.sprite.position.y = 0
         }
         
     }
+
 }

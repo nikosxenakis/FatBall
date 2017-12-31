@@ -9,123 +9,110 @@
 import Foundation
 import SpriteKit
 
-struct Direction {
-    static let None : UInt8 = 000
-    static let Right : UInt8 = 001
-    static let Left : UInt8 = 010
+typealias Direction = UInt8
+
+struct Directions {
+    static let None : Direction = 0
+    static let Right : Direction = 1
+    static let Left : Direction = 2
 }
 
-class Player{
+class Player: SpriteObject{
     
-    var player: SKSpriteNode
-    var gameScene: GameScene
     var width: CGFloat
     var height: CGFloat
-    var direction = Direction.None
-
-    init(gameScene: GameScene, width: CGFloat, height: CGFloat){
-        //self.player = SKSpriteNode(imageNamed: "ball")
-        self.player = SKSpriteNode(imageNamed: "colorfulBall")
-        
-        
-        self.player.name = "Ball"
-        
-        self.gameScene = gameScene
+    var direction = Directions.None
+    
+    init(text: String, width: CGFloat, height: CGFloat){
+    
         self.width = width
         self.height = height
         
+        super.init(id: text, sprite: SKSpriteNode(imageNamed: text))
+        
         //size
-        player.size.width = 80
-        player.size.height = 80
+        (self.sprite as! SKSpriteNode).size.width = 100
+        (self.sprite as! SKSpriteNode).size.height = 100
         
         //position
-        player.position = CGPoint(x: width * 0.5, y: height * 0.25)
-        player.zPosition = 1
+        self.sprite.position = CGPoint(x: width * 0.5, y: height * 0.25)
         
+        self.setZPosition(physicsCategory: PhysicsCategories.Ball)
+                
         //physics
-        player.physicsBody = SKPhysicsBody(texture: player.texture!, size: player.size)
+        self.sprite.physicsBody = SKPhysicsBody(texture: (self.sprite as! SKSpriteNode).texture!, size: (self.sprite as! SKSpriteNode).size)
         
-        player.physicsBody?.usesPreciseCollisionDetection = true
+        self.sprite.physicsBody?.usesPreciseCollisionDetection = true
         
-        player.physicsBody?.categoryBitMask = PhysicsCategory.Ball
-        player.physicsBody?.contactTestBitMask = PhysicsCategory.Wall
-        player.physicsBody?.collisionBitMask = PhysicsCategory.Wall
+        self.sprite.physicsBody?.categoryBitMask = PhysicsCategories.Ball
+        self.sprite.physicsBody?.contactTestBitMask = PhysicsCategories.Wall
+        self.sprite.physicsBody?.collisionBitMask = PhysicsCategories.None
         
-        player.physicsBody?.allowsRotation = false
+        self.sprite.physicsBody?.allowsRotation = false
         
-        //add to scene
-        gameScene.addChild(player)
     }
     
-    func update(){
-        self.player.position = CGPoint(x: self.player.position.x, y: height * 0.25)
-        self.player.physicsBody?.velocity = CGVector(dx: self.player.physicsBody!.velocity.dx, dy: 0.0 )
+    override func update(){
+        self.sprite.position = CGPoint(x: self.sprite.position.x, y: height * 0.25)
+        self.sprite.physicsBody?.velocity = CGVector(dx: self.sprite.physicsBody!.velocity.dx, dy: 0.0 )
     }
     
-    func stop(){
-        self.player.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0 )
-    }
     
     func touchEvent(){
-        if(gameState == GameState.Start){
+        if(gameState == GameStates.Start){
             let startLabel = SpritesHolder.getSprite(id: "Tap to begin") as! Label
             startLabel.hide()
             
-            gameState = GameState.Playing
+            gameState = GameStates.Playing
         }
-        if(gameState == GameState.End){
+        if(gameState == GameStates.End){
             return
         }
         
         //na efarmosw taxitita
-        if(direction == Direction.None || direction == Direction.Left){
-            direction = Direction.Right
+        if(direction == Directions.None || direction == Directions.Left){
+            direction = Directions.Right
             
-            player.physicsBody?.velocity = CGVector(dx: 190.0, dy: 0.0 )
+            self.sprite.physicsBody?.velocity = CGVector(dx: 190.0, dy: 0.0 )
         }
         else{
-            direction = Direction.Left
+            direction = Directions.Left
             
-            player.physicsBody?.velocity = CGVector(dx: -190.0, dy: 0.0 )
+            self.sprite.physicsBody?.velocity = CGVector(dx: -190.0, dy: 0.0 )
         }
     }
     
     func startContact(_ contact: SKPhysicsContact){
         
-        let scale = self.player.xScale
+        let scale = self.sprite.xScale
         
-        if(scale < 0.2){
-            ObstaclesHolder.stop()
-            self.stop()
-            (SpritesHolder.getSprite(id: "You lose") as! Label).show()
-            gameState = GameState.End
+        if(scale < 0.4){
+            SpritesHolder.stop()
+            
+            SpritesHolder.getSprite(id: "You lose").show()
+            gameState = GameStates.End
             print("End Game")
             return
         }
         
-        self.player.run(SKAction.scale(to: scale - 0.1 , duration: 1))
-        
+        self.sprite.run(SKAction.scale(to: scale - 0.1 , duration: 1))
         
         let path = Bundle.main.path(forResource: "Spark", ofType: "sks")
         let rainParticle = NSKeyedUnarchiver.unarchiveObject(withFile: path!) as! SKEmitterNode
         
-        
-        
-        
-        
         rainParticle.name = "rainParticle"
-        rainParticle.zPosition = 1
+        rainParticle.zPosition = 100//CGFloat(PhysicsCategories.VisualEffect)
+
         
         rainParticle.numParticlesToEmit = 100
 
-        
         print(contact.bodyA)
-       // print(contact.bodyB)
-
-        let w = contact.bodyA.node?.frame.width
-        let h = contact.bodyA.node?.frame.height
+        print(contact.bodyB)
         
-        let angle = acos(h!/(2*w!))*180/3.14
+        let w = self.sprite.frame.width
+        let h = self.sprite.frame.height
+        
+        let angle = acos(h/(2*w))*180/3.14
         let range: CGFloat = 40.0
         
         print(angle)
@@ -134,17 +121,21 @@ class Player{
         rainParticle.emissionAngleRange = range
         //rainParticle.particleBirthRate = 80
         
-        rainParticle.targetNode = self.player
+        rainParticle.targetNode = self.sprite
         
-        let newX = contact.contactPoint.x - self.player.position.x
-        let newY = contact.contactPoint.y - self.player.position.y
-        
+        let newX = contact.contactPoint.x - self.sprite.position.x
+        let newY = contact.contactPoint.y - self.sprite.position.y
+
         rainParticle.position = CGPoint(x: newX, y: newY)
 
-        rainParticle.targetNode = gameScene;
+        rainParticle.targetNode = SpritesHolder.getGameScene()
         
-        self.player.addChild(rainParticle)
+        self.sprite.addChild(rainParticle)
         
+        SpritesHolder.printSprites()
+
+        self.touchEvent()
+
     }
   
     func endContact(){

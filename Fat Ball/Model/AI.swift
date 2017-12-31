@@ -15,11 +15,11 @@ class AI{
     static let spawnTime: TimeInterval = 2.5
 
     private var lastTime: TimeInterval
-    private var lastPos: UInt32
+    private var lastPos: ObstaclePosition
     
     init(){
         self.lastTime = 0
-        self.lastPos = ObstaclePosition.Right
+        self.lastPos = ObstaclePositions.Right
     }
     
     static func run(_ currentTime: TimeInterval){
@@ -33,10 +33,10 @@ class AI{
 
             //position
             var num: CGFloat = 0.0
-            var pos: UInt32 = 0
+            var pos: ObstaclePosition = ObstaclePositions.Left
             var obstacleName: String = "brownObstacle"
             
-            if(instance.lastPos == ObstaclePosition.Right){
+            if(instance.lastPos == ObstaclePositions.Right){
                 num = random(min: 0 , max: 1.2)
             }
             else{
@@ -44,10 +44,10 @@ class AI{
             }
             
             if(num < 1 ){
-                pos = ObstaclePosition.Left
+                pos = ObstaclePositions.Left
             }
             else{
-                pos = ObstaclePosition.Right
+                pos = ObstaclePositions.Right
             }
             
             //color

@@ -9,73 +9,67 @@
 import Foundation
 import SpriteKit
 
-struct ObstaclePosition {
-    static let Right : UInt32 = 0
-    static let Left : UInt32 = 1
+typealias ObstaclePosition = UInt8
+
+struct ObstaclePositions {
+    static let Right : ObstaclePosition = 0
+    static let Left : ObstaclePosition = 1
 }
 
-class Obstacle{
+class Obstacle: SpriteObject{
     
-    var id: UInt16
     static var obstaclesNumber: UInt16 = 0;
-    var obstacle: SKSpriteNode
-    var gameScene: GameScene
-    var position = ObstaclePosition.Left
+    var position = ObstaclePositions.Left
     var width: CGFloat
     var height: CGFloat
     
-    init(gameScene: GameScene, position: UInt32, width: CGFloat, height: CGFloat, obstacleName: String){
+    init(position: ObstaclePosition, width: CGFloat, height: CGFloat, obstacleName: String){
         
-        self.id = Obstacle.obstaclesNumber + 1;
-        Obstacle.obstaclesNumber = Obstacle.obstaclesNumber + 1;
-        
-        self.obstacle = SKSpriteNode(imageNamed: obstacleName)
-        self.gameScene = gameScene
         self.position = position
         self.width = width
         self.height = height
         
-        obstacle.physicsBody?.isDynamic = false
+        Obstacle.obstaclesNumber = Obstacle.obstaclesNumber + 1;
+
+        super.init(id: "obstacle\(Obstacle.obstaclesNumber)", sprite: SKSpriteNode(imageNamed: obstacleName))
         
-        obstacle.zPosition = 1
+        self.sprite.name = "obstacle\(Obstacle.obstaclesNumber)"
         
-        obstacle.size.height = height
+        self.sprite.position = CGPoint(x: 10, y: 10)
         
-        obstacle.size.width = width
+        self.sprite.physicsBody?.isDynamic = false
         
-        obstacle.physicsBody = SKPhysicsBody(texture: obstacle.texture!, size: obstacle.size)
+        (self.sprite as! SKSpriteNode).size.height = height
+        (self.sprite as! SKSpriteNode).size.width = width
         
+        self.sprite.physicsBody = SKPhysicsBody(texture: (self.sprite as! SKSpriteNode).texture!, size: (self.sprite as! SKSpriteNode).size)
+        
+        self.setZPosition(physicsCategory: PhysicsCategories.Wall)
+                
         var pos: CGFloat = 0
 
-        if(self.position == ObstaclePosition.Right){
-            pos = gameScene.size.width
+        if(self.position == ObstaclePositions.Right){
+            pos = SpritesHolder.getGameScene().size.width
         }
         
-        obstacle.position = CGPoint(x: pos, y: +gameScene.size.height+height/2)
+        self.sprite.position = CGPoint(x: pos, y: SpritesHolder.getGameScene().size.height+height/2)
         
-        
-        obstacle.physicsBody?.usesPreciseCollisionDetection = true
-        
-        obstacle.physicsBody?.categoryBitMask = PhysicsCategory.Wall
-        obstacle.physicsBody?.contactTestBitMask = PhysicsCategory.Ball
-        obstacle.physicsBody?.collisionBitMask = PhysicsCategory.None
-        
-        gameScene.addChild(obstacle)
+        self.sprite.physicsBody?.usesPreciseCollisionDetection = true
 
-        self.obstacle.physicsBody?.velocity = CGVector(dx: 0.0, dy: -100.0 )
+        self.sprite.physicsBody?.categoryBitMask = PhysicsCategories.Wall
+        self.sprite.physicsBody?.contactTestBitMask = PhysicsCategories.Ball
+        self.sprite.physicsBody?.collisionBitMask = PhysicsCategories.None
+
+        self.sprite.physicsBody?.velocity = CGVector(dx: 0.0, dy: -100.0 )
 
     }
     
-    func update(){
-        self.obstacle.physicsBody?.velocity = CGVector(dx: 0.0, dy: -100.0 )
-    }
-    
-    func stop(){
-        self.obstacle.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0 )
+    override func update(){
+        self.sprite.physicsBody?.velocity = CGVector(dx: 0.0, dy: -100.0 )
     }
     
     func destroy(){
         print("Obstacle with id: \(self.id) destroyed")
-        self.obstacle.removeFromParent()
+        self.sprite.removeFromParent()
     }
 }

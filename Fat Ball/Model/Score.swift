@@ -9,30 +9,29 @@
 import Foundation
 import SpriteKit
 
-class Score{
-    
-    var scoreLabel: SKLabelNode!
+class Score: SpriteObject{
     
     var score: Int = 0 {
         didSet {
-            scoreLabel.text = "Score: \(score)"
+            (self.sprite as! SKLabelNode).text = "Score: \(score)"
         }
     }
     
     init(){
-        self.scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
-        self.scoreLabel.text = "Score: 0"
+        
+        super.init(id: "score", sprite: SKLabelNode(fontNamed: "Chalkduster"))
+        
+        (self.sprite as! SKLabelNode).text = "Score: 0"
+        
+        (self.sprite as! SKLabelNode).horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
 
-        self.scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
+        self.sprite.position = CGPoint(x: 10, y: 10)
         
-        self.scoreLabel.position = CGPoint(x: 10, y: 10)
-        
-        self.scoreLabel.zPosition = 100
-        SpritesHolder.getGameScene().addChild(self.scoreLabel)
+        self.setZPosition(physicsCategory: PhysicsCategories.Label)
         
     }
 
-    func update(){
+    override func update(){
         self.score+=1
     }
 }
