@@ -33,7 +33,7 @@ class SpritesHolder{
     }
     
     static func getSprite(id: String) -> SpriteObject{
-        return instance.spritesList.filter{$0.id == id}[0]
+        return instance.spritesList.filter{$0.getId() == id}[0]
     }
     
     static func printSprites(){

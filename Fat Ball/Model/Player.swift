@@ -22,7 +22,8 @@ class Player: SpriteObject{
     var width: CGFloat
     var height: CGFloat
     var direction = Directions.None
-    
+    static var rainParticleNumber = 0
+
     init(text: String, width: CGFloat, height: CGFloat){
     
         self.width = width
@@ -31,8 +32,8 @@ class Player: SpriteObject{
         super.init(id: text, sprite: SKSpriteNode(imageNamed: text))
         
         //size
-        (self.sprite as! SKSpriteNode).size.width = 100
-        (self.sprite as! SKSpriteNode).size.height = 100
+        (self.sprite as! SKSpriteNode).size.width = PLAYER_WIDTH
+        (self.sprite as! SKSpriteNode).size.height = PLAYER_HEIGHT
         
         //position
         self.sprite.position = CGPoint(x: width * 0.5, y: height * 0.25)
@@ -40,7 +41,10 @@ class Player: SpriteObject{
         self.setZPosition(physicsCategory: PhysicsCategories.Ball)
                 
         //physics
-        self.sprite.physicsBody = SKPhysicsBody(texture: (self.sprite as! SKSpriteNode).texture!, size: (self.sprite as! SKSpriteNode).size)
+        self.sprite.physicsBody = SKPhysicsBody(
+            texture: (self.sprite as! SKSpriteNode).texture!,
+            size: (self.sprite as! SKSpriteNode).size
+        )
         
         self.sprite.physicsBody?.usesPreciseCollisionDetection = true
         
@@ -72,21 +76,19 @@ class Player: SpriteObject{
         //na efarmosw taxitita
         if(direction == Directions.None || direction == Directions.Left){
             direction = Directions.Right
-            
-            self.sprite.physicsBody?.velocity = CGVector(dx: 190.0, dy: 0.0 )
+            self.sprite.physicsBody?.velocity = CGVector(dx: PLAYER_SPEED, dy: 0.0 )
         }
         else{
             direction = Directions.Left
-            
-            self.sprite.physicsBody?.velocity = CGVector(dx: -190.0, dy: 0.0 )
+            self.sprite.physicsBody?.velocity = CGVector(dx: -PLAYER_SPEED, dy: 0.0 )
         }
     }
     
     func startContact(_ contact: SKPhysicsContact){
         
-        let scale = self.sprite.xScale
+        let scale: CGFloat = self.sprite.xScale
         
-        if(scale < 0.4){
+        if(scale < PLAYER_SCALE_MIN){
             SpritesHolder.stop()
             
             SpritesHolder.getSprite(id: "You lose").show()
@@ -95,19 +97,14 @@ class Player: SpriteObject{
             return
         }
         
-        self.sprite.run(SKAction.scale(to: scale - 0.1 , duration: 1))
+        self.sprite.run(SKAction.scale(to: scale - 0.1 , duration: 0.5))
         
         let path = Bundle.main.path(forResource: "Spark", ofType: "sks")
         let rainParticle = NSKeyedUnarchiver.unarchiveObject(withFile: path!) as! SKEmitterNode
         
-        rainParticle.name = "rainParticle"
-        rainParticle.zPosition = 100//CGFloat(PhysicsCategories.VisualEffect)
-
-        
+        Player.rainParticleNumber = Player.rainParticleNumber + 1
+        rainParticle.name = "rainParticle\(Player.rainParticleNumber)"
         rainParticle.numParticlesToEmit = 100
-
-        print(contact.bodyA)
-        print(contact.bodyB)
         
         let w = self.sprite.frame.width
         let h = self.sprite.frame.height
@@ -115,8 +112,6 @@ class Player: SpriteObject{
         let angle = acos(h/(2*w))*180/3.14
         let range: CGFloat = 40.0
         
-        print(angle)
-
         rainParticle.emissionAngle = angle + 180 + range/2
         rainParticle.emissionAngleRange = range
         //rainParticle.particleBirthRate = 80
@@ -125,8 +120,9 @@ class Player: SpriteObject{
         
         let newX = contact.contactPoint.x - self.sprite.position.x
         let newY = contact.contactPoint.y - self.sprite.position.y
-
+        
         rainParticle.position = CGPoint(x: newX, y: newY)
+        rainParticle.particleZPosition = CGFloat(PhysicsCategories.VisualEffect)
 
         rainParticle.targetNode = SpritesHolder.getGameScene()
         

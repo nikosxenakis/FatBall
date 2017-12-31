@@ -28,8 +28,8 @@ class AI{
             instance.lastTime = currentTime
             
             //size
-            let width: CGFloat = random(min: 150 , max: 450)
-            let height: CGFloat = random(min: 200 , max: 300)
+            let width: CGFloat = random(min: OBSTACLE_WIDTH_MIN , max: OBSTACLE_WIDTH_MAX)
+            let height: CGFloat = random(min: OBSTACLE_HEIGHT_MIN , max: OBSTACLE_HEIGHT_MAX)
 
             //position
             var num: CGFloat = 0.0

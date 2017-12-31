@@ -28,6 +28,7 @@
 		EE958CE21EABA51A005E91B5 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE958CE11EABA51A005E91B5 /* Score.swift */; };
 		EE958CE41EABB1BD005E91B5 /* configurationFile.json in Resources */ = {isa = PBXBuildFile; fileRef = EE958CE31EABB1BD005E91B5 /* configurationFile.json */; };
 		EE9B8E441DAFC12200A4CF74 /* Terrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B8E431DAFC12200A4CF74 /* Terrain.swift */; };
+		EECF4B5B1FF931C100944099 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECF4B5A1FF931C100944099 /* Variables.swift */; };
 		EEF96A4F1EAF480D00E2E9FB /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF96A4E1EAF480D00E2E9FB /* Parser.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		EE958CE11EABA51A005E91B5 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		EE958CE31EABB1BD005E91B5 /* configurationFile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = configurationFile.json; sourceTree = "<group>"; };
 		EE9B8E431DAFC12200A4CF74 /* Terrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Terrain.swift; sourceTree = "<group>"; };
+		EECF4B5A1FF931C100944099 /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		EEF96A4E1EAF480D00E2E9FB /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +139,7 @@
 				EE1B74B91FF54FF600EC1AC5 /* SpritesHolder.swift */,
 				EE1B74BB1FF5514A00EC1AC5 /* SpriteObject.swift */,
 				EE1B74BD1FF68F8400EC1AC5 /* PhysicsCategories.swift */,
+				EECF4B5A1FF931C100944099 /* Variables.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				EE1B74B81FF54BBF00EC1AC5 /* Label.swift in Sources */,
 				EE958CE21EABA51A005E91B5 /* Score.swift in Sources */,
 				EE0CA0ED1DAD6599004DCE2D /* GameViewController.swift in Sources */,
+				EECF4B5B1FF931C100944099 /* Variables.swift in Sources */,
 				EE74C3AA1DAFD82900A0ED92 /* Player.swift in Sources */,
 				EE1B74BC1FF5514A00EC1AC5 /* SpriteObject.swift in Sources */,
 				EE0CA0E51DAD6599004DCE2D /* AppDelegate.swift in Sources */,

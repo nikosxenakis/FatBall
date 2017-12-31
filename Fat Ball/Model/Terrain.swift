@@ -26,7 +26,7 @@ class Terrain: SpriteObject{
 
         //size
         (self.sprite as! SKSpriteNode).size.width = width
-        (self.sprite as! SKSpriteNode).size.height = 10*height
+        (self.sprite as! SKSpriteNode).size.height = 2*height
 
         //position
         self.sprite.position = CGPoint(x: width/2, y: 0)
@@ -35,7 +35,7 @@ class Terrain: SpriteObject{
         //physics
         self.sprite.physicsBody = SKPhysicsBody()
         self.sprite.physicsBody?.isDynamic = false
-        self.sprite.physicsBody?.velocity = CGVector(dx: 0.0, dy: -100.0 )
+        self.sprite.physicsBody?.velocity = CGVector(dx: 0.0, dy: -TERRAIN_SPEED )
         
         //borders
         let borderBody = SKPhysicsBody(edgeLoopFrom: SpritesHolder.getGameScene().frame)
@@ -45,13 +45,12 @@ class Terrain: SpriteObject{
         borderBody.collisionBitMask = PhysicsCategories.None
         
         borderBody.friction = 0
+
         SpritesHolder.getGameScene().physicsBody = borderBody
     }
     
     override func update(){
         
-        self.sprite.physicsBody?.velocity = CGVector(dx: 0.0, dy: -100.0 )
-
         if(self.sprite.position.y <= -(self.sprite as! SKSpriteNode).size.height/2+self.height){
                 self.sprite.position.y = 0
         }

@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class SpriteObject {
-    var id: String
+    private var id: String
     var sprite: SKNode
     
     init(id: String, sprite: SKNode) {
@@ -22,6 +22,9 @@ class SpriteObject {
         self.show()
     }
     
+    func getId() -> String{
+        return self.id
+    }
     func show(){
         self.sprite.isHidden = false
     }
@@ -36,6 +39,7 @@ class SpriteObject {
     
     func setZPosition(physicsCategory: PhysicsCategory){
         self.sprite.zPosition = CGFloat(physicsCategory)
+        print(self.sprite.zPosition)
     }
     
     func printSprite(){

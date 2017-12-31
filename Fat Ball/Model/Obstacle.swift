@@ -19,7 +19,7 @@ struct ObstaclePositions {
 class Obstacle: SpriteObject{
     
     static var obstaclesNumber: UInt16 = 0;
-    var position = ObstaclePositions.Left
+    var position: ObstaclePosition = ObstaclePositions.Left
     var width: CGFloat
     var height: CGFloat
     
@@ -34,8 +34,6 @@ class Obstacle: SpriteObject{
         super.init(id: "obstacle\(Obstacle.obstaclesNumber)", sprite: SKSpriteNode(imageNamed: obstacleName))
         
         self.sprite.name = "obstacle\(Obstacle.obstaclesNumber)"
-        
-        self.sprite.position = CGPoint(x: 10, y: 10)
         
         self.sprite.physicsBody?.isDynamic = false
         
@@ -60,16 +58,16 @@ class Obstacle: SpriteObject{
         self.sprite.physicsBody?.contactTestBitMask = PhysicsCategories.Ball
         self.sprite.physicsBody?.collisionBitMask = PhysicsCategories.None
 
-        self.sprite.physicsBody?.velocity = CGVector(dx: 0.0, dy: -100.0 )
+        self.sprite.physicsBody?.velocity = CGVector(dx: 0.0, dy: -TERRAIN_SPEED )
 
     }
     
     override func update(){
-        self.sprite.physicsBody?.velocity = CGVector(dx: 0.0, dy: -100.0 )
+        self.sprite.physicsBody?.velocity = CGVector(dx: 0.0, dy: -TERRAIN_SPEED )
     }
     
     func destroy(){
-        print("Obstacle with id: \(self.id) destroyed")
+        print("Obstacle with id: \(self.getId()) destroyed")
         self.sprite.removeFromParent()
     }
 }

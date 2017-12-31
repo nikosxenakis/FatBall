@@ -13,9 +13,9 @@ typealias PhysicsCategory = UInt32
 
 struct PhysicsCategories {
     static let None: PhysicsCategory = 0
-    static let Ball: PhysicsCategory = 3
-    static let Wall: PhysicsCategory = 2
-    static let PowerUp: PhysicsCategory = 4
-    static let VisualEffect: PhysicsCategory = 5
-    static let Label: PhysicsCategory = 6
+    static let Wall: PhysicsCategory = 1
+    static let Ball: PhysicsCategory = 2
+    static let PowerUp: PhysicsCategory = 3
+    static let VisualEffect: PhysicsCategory = 4
+    static let Label: PhysicsCategory = 5
 }
